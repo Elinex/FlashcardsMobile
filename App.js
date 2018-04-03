@@ -37,6 +37,7 @@ const Tabs = TabNavigator({
 
 export default class App extends Component {
   render() {
+    console.disableYellowBox = true
     return (
       <View style={{flex: 1}}>
         <AppStatusBar barStyle='light-content' />
