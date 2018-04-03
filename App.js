@@ -1,25 +1,47 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
-import CardFront from './components/CardFront'
-import { COLOR, ThemeProvider } from 'react-native-material-ui'
+import { StyleSheet, View, StatusBar } from 'react-native'
+import AddDeck from './components/AddDeck'
+import AllDecks from './components/AllDecks'
+import { TabNavigator } from 'react-navigation'
+import { Constants } from 'expo'
 
-const uiTheme = {
-    palette: {
-        primaryColor: COLOR.green500,
-    },
-    toolbar: {
-        container: {
-            height: 50,
-        }
-    }
+function AppStatusBar(){
+  return (
+    <View style={{height: Constants.statusBarHeight}}>
+      <StatusBar translucent />
+    </View>
+  )
 }
+
+const Tabs = TabNavigator({
+  AllDecks: {
+    screen: AllDecks,
+    navigationOptions: {
+      tabBarLabel: 'Decks'
+    }
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck'
+    }
+  }
+},
+{
+  tabBarOptions: {
+    style: {
+      height: 56
+    }
+  }
+})
 
 export default class App extends Component {
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-        <CardFront />
-      </ThemeProvider>
+      <View style={{flex: 1}}>
+        <AppStatusBar barStyle='light-content' />
+        <Tabs />
+      </View>
     )
   }
 }
