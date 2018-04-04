@@ -30,7 +30,8 @@ const Tabs = TabNavigator({
 {
   tabBarOptions: {
     style: {
-      height: 56
+      height: 56,
+      backgroundColor: '#3478f6',
     }
   }
 })
