@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, TextInput } from 'react-native'
+import { View, TouchableOpacity, Text, TextInput, StyleSheet } from 'react-native'
 
 class AddCard extends Component{
   state = {
@@ -9,10 +9,10 @@ class AddCard extends Component{
 
   render(){
     return (
-      <View style={{flex: 1, justifyContent: 'space-around', alignItems: 'stretch',}}>
+      <View style={styles.container}>
         <View style={{flex: 1, justifyContent: 'flex-end'}}>
           <TextInput
-            style={{height: 80, margin: 15, textAlign: 'center', borderRadius: 8, fontSize: 20, backgroundColor: '#87cefa'}}
+            style={styles.textInput}
             onChangeText={(question) => this.setState({question})}
             value={this.state.question}
             placeholder='Insert question'
@@ -23,7 +23,7 @@ class AddCard extends Component{
         </View>
         <View style={{flex: 1, justifyContent: 'flex-start'}}>
           <TextInput
-            style={{height: 80, margin: 15, textAlign: 'center', borderRadius: 8, fontSize: 20, backgroundColor: '#87cefa'}}
+            style={styles.textInput}
             onChangeText={(answer) => this.setState({answer})}
             value={this.state.answer}
             placeholder='Insert answer'
@@ -32,10 +32,10 @@ class AddCard extends Component{
             underlineColorAndroid='white'
           />
         </View>
-        <View style={{flex: 1, alignItems: 'center'}}>
-          <TouchableOpacity style={{borderRadius: 8, alignItems: 'center', backgroundColor: '#3478f6', padding: 10, width: 100}}>
+        <View style={styles.boxSubmitBtn}>
+          <TouchableOpacity style={styles.submitBtn}>
             <Text style={{color: 'white'}}>
-              Add Card
+              Submit
             </Text>
           </TouchableOpacity>
         </View>
@@ -43,5 +43,33 @@ class AddCard extends Component{
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'stretch'
+  },
+  textInput: {
+    height: 80,
+    margin: 15,
+    textAlign: 'center',
+    borderRadius: 8,
+    fontSize: 20,
+    backgroundColor: 'orange',
+    opacity: 0.3
+  },
+  boxSubmitBtn: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  submitBtn: {
+    borderRadius: 8,
+    alignItems: 'center',
+    backgroundColor: '#3478f6',
+    padding: 10,
+    width: 100
+  }
+})
 
 export default AddCard

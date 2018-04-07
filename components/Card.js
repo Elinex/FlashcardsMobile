@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import AnswerView from './AnswerView'
 
 class Card extends Component{
@@ -22,22 +22,28 @@ class Card extends Component{
     return (
       // Put here the header with the quiz name
       <View style={{flex: 1}}>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>
-          <Text style={{color: 'gray', fontSize: 28, margin: 10}}>Card 1 of n</Text>
+        <View style={styles.boxCardsNumber}>
+          <Text style={styles.cardsNumber}>card 1 of n</Text>
         </View>
-        <View style={{flex: 2, justifyContent: 'flex-start', alignItems: 'center'}}>
-          <Text style={{color: 'orange', fontSize: 36, fontWeight: 'bold', margin: 10, textAlign: 'center'}}>Question: Does bla bla?</Text>
+        <View style={styles.boxQuestion}>
+          <Text style={styles.question}>Question: Does bla bla?</Text>
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <TouchableOpacity disabled={true} style={{opacity: 0.3, borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green', margin: 10, width: 100, height: 40}}>
+            <TouchableOpacity
+              disabled={true}
+              style={[styles.disabledBtn, {backgroundColor: 'green'}]}
+            >
               <Text style={{color: 'white'}}>
                 Correct
               </Text>
             </TouchableOpacity>
           </View>
           <View style={{flex: 1, alignItems: 'flex-start'}}>
-            <TouchableOpacity disabled={true} style={{opacity: 0.3, borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', margin: 10, width: 100, height: 40}}>
+            <TouchableOpacity
+              disabled={true}
+              style={[styles.disabledBtn, {backgroundColor: 'red'}]}
+            >
               <Text style={{color: 'white'}}>
                 Incorrect
               </Text>
@@ -46,7 +52,7 @@ class Card extends Component{
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity
-            style={{borderRadius: 8, alignItems: 'center', backgroundColor: '#3478f6', padding: 10, width: 100, height: 40}}
+            style={styles.answerBtn}
             onPress={this.showAnswer}
           >
             <Text style={{color: 'white'}}>
@@ -59,5 +65,46 @@ class Card extends Component{
   }
 }
 
+const styles = StyleSheet.create({
+  boxCardsNumber: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  cardsNumber: {
+    color: 'gray',
+    fontSize: 22,
+    margin: 10
+  },
+  boxQuestion: {
+    flex: 2,
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  question: {
+    color: 'orange',
+    fontSize: 36,
+    fontWeight: 'bold',
+    margin: 10,
+    textAlign: 'center'
+  },
+  disabledBtn: {
+    opacity: 0.3,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10,
+    width: 100,
+    height: 40
+  },
+  answerBtn: {
+    borderRadius: 8,
+    alignItems: 'center',
+    backgroundColor: '#3478f6',
+    padding: 10,
+    width: 100,
+    height: 40
+  }
+})
 
 export default Card
