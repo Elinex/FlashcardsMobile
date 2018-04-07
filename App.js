@@ -17,6 +17,12 @@ function AppStatusBar(){
 }
 
 const Tabs = TabNavigator({
+  AllDecks: {
+    screen: AllDecks,
+    navigationOptions: {
+      tabBarLabel: 'Decks'
+    }
+  },
   Card: {
     screen: Card,
     navigationOptions: {
@@ -33,12 +39,6 @@ const Tabs = TabNavigator({
     screen: Deck,
     navigationOptions: {
       tabBarLabel: 'Deck'
-    }
-  },
-  AllDecks: {
-    screen: AllDecks,
-    navigationOptions: {
-      tabBarLabel: 'Decks'
     }
   },
   AddDeck: {
