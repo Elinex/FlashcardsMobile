@@ -4,6 +4,7 @@ import AddDeck from './components/AddDeck'
 import AllDecks from './components/AllDecks'
 import Deck from './components/Deck'
 import AddCard from './components/AddCard'
+import Card from './components/Card'
 import { TabNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 
@@ -16,6 +17,12 @@ function AppStatusBar(){
 }
 
 const Tabs = TabNavigator({
+  Card: {
+    screen: Card,
+    navigationOptions: {
+      tabBarLabel: 'Card'
+    }
+  },
   AddCard: {
     screen: AddCard,
     navigationOptions: {
