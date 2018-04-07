@@ -14,12 +14,15 @@ class Deck extends Component{
           <Text style={styles.cardsNumber}>n cards</Text>
         </View>
         <View style={styles.boxBtn}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate('Card')}
+          >
             <Text style={{color: 'white'}}>Start Quiz</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            // onPress={() => this.props.navigation.navigate('AddCard')}
+            onPress={() => this.props.navigation.navigate('AddCard')}
           >
             <Text style={{color: 'white'}}>Add Cards</Text>
           </TouchableOpacity>

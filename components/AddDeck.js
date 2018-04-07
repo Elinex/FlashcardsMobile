@@ -22,7 +22,10 @@ class AddDeck extends Component{
           />
         </View>
         <View style={styles.boxSubmitBtn}>
-          <TouchableOpacity style={styles.submitBtn}>
+          <TouchableOpacity
+            style={styles.submitBtn}
+            onPress={() => this.props.navigation.navigate('Deck')}
+          >
             <Text style={{color: 'white'}}>
               Submit
             </Text>

@@ -39,7 +39,7 @@ class AddCard extends Component{
         <View style={styles.boxSubmitBtn}>
           <TouchableOpacity
             style={styles.submitBtn}
-            // onPress={() => this.props.navigation.navigate('Deck')}
+            onPress={() => this.props.navigation.navigate('Deck')}
           >
             <Text style={{color: 'white'}}>
               Submit
