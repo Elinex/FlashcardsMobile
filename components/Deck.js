@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 
 class Deck extends Component{
+  static navigationOptions = {
+    title: 'Deck title',
+  }
+
   render(){
     return (
       <View style={styles.container}>
@@ -13,7 +17,10 @@ class Deck extends Component{
           <TouchableOpacity style={styles.button}>
             <Text style={{color: 'white'}}>Start Quiz</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            // onPress={() => this.props.navigation.navigate('AddCard')}
+          >
             <Text style={{color: 'white'}}>Add Cards</Text>
           </TouchableOpacity>
         </View>

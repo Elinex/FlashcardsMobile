@@ -3,6 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import AnswerView from './AnswerView'
 
 class Card extends Component{
+  static navigationOptions = {
+    title: 'Card',
+  }
+
   state = {
     seeAnswer: false
   }

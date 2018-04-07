@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, StatusBar } from 'react-native'
-import AddDeck from './components/AddDeck'
-import AllDecks from './components/AllDecks'
 import Deck from './components/Deck'
-import AddCard from './components/AddCard'
-import Card from './components/Card'
-import { TabNavigator } from 'react-navigation'
+import AllDecks from './components/AllDecks'
+import AddDeck from './components/AddDeck'
+// import Deck from './components/Deck'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 
 function AppStatusBar(){
@@ -23,33 +22,17 @@ const Tabs = TabNavigator({
       tabBarLabel: 'Decks'
     }
   },
-  Card: {
-    screen: Card,
-    navigationOptions: {
-      tabBarLabel: 'Card'
-    }
-  },
-  AddCard: {
-    screen: AddCard,
-    navigationOptions: {
-      tabBarLabel: 'Add Card'
-    }
-  },
-  Deck: {
-    screen: Deck,
-    navigationOptions: {
-      tabBarLabel: 'Deck'
-    }
-  },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'Add Deck'
     }
-  },
-
+  }
 },
 {
+  navigationOptions: {
+    header: null
+  },
   tabBarOptions: {
     style: {
       height: 56,
@@ -58,13 +41,25 @@ const Tabs = TabNavigator({
   }
 })
 
+const RootStack = StackNavigator({
+  Home: {
+    screen: Tabs
+  },
+  Deck: {
+    screen: Deck
+  }
+},
+{
+  initialRouteName: 'Home',
+})
+
 export default class App extends Component {
   render() {
     console.disableYellowBox = true
     return (
       <View style={{flex: 1}}>
         <AppStatusBar barStyle='light-content' />
-        <Tabs />
+        <RootStack />
       </View>
     )
   }

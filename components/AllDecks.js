@@ -3,16 +3,15 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native
 import Deck from './Deck'
 
 class AllDecks extends Component{
-  showDeck = () => {
-    // Go to Deck View
-  }
 
   render(){
 
     const text = (item) => {
       return (
         <View style={styles.boxText}>
-          <TouchableOpacity onPress={this.showDeck}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Deck')}
+          >
             <Text style={styles.textDeck}>{item.deck}</Text>
           </TouchableOpacity>
           <Text style={styles.textCards}>n cards</Text>

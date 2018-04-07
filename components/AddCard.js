@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, TextInput, StyleSheet } from 'react-native'
 
 class AddCard extends Component{
+  static navigationOptions = {
+    title: 'Add Card',
+  }
+
   state = {
     question: '',
     answer: ''
@@ -33,7 +37,10 @@ class AddCard extends Component{
           />
         </View>
         <View style={styles.boxSubmitBtn}>
-          <TouchableOpacity style={styles.submitBtn}>
+          <TouchableOpacity
+            style={styles.submitBtn}
+            // onPress={() => this.props.navigation.navigate('Deck')}
+          >
             <Text style={{color: 'white'}}>
               Submit
             </Text>

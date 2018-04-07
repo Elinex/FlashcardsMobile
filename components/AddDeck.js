@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native'
 
 class AddDeck extends Component{
+
   state = {
     deckTitle: ''
   }
