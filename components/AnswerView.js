@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import AnswerView from './AnswerView'
+import Card from './Card'
 
-class Card extends Component{
+class AnswerView extends Component{
   state = {
-    seeAnswer: false
+    seeCard: false
   }
 
-  showAnswer = () => {
+  showCard = () => {
     this.setState({
-      seeAnswer: true
+      seeCard: true
     })
   }
 
   render(){
-
-    if (this.state.seeAnswer === true){
-      return <AnswerView />
+    
+    if (this.state.seeCard === true){
+      return <Card />
     }
 
     return (
@@ -26,18 +26,18 @@ class Card extends Component{
           <Text style={{color: 'gray', fontSize: 28, margin: 10}}>Card 1 of n</Text>
         </View>
         <View style={{flex: 2, justifyContent: 'flex-start', alignItems: 'center'}}>
-          <Text style={{color: 'orange', fontSize: 36, fontWeight: 'bold', margin: 10, textAlign: 'center'}}>Question: Does bla bla?</Text>
+          <Text style={{color: 'orange', fontSize: 36, fontWeight: 'bold', margin: 10, textAlign: 'center'}}>Answer: Yes!!!!</Text>
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <TouchableOpacity disabled={true} style={{opacity: 0.3, borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green', margin: 10, width: 100, height: 40}}>
+            <TouchableOpacity style={{borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green', margin: 10, width: 100, height: 40}}>
               <Text style={{color: 'white'}}>
                 Correct
               </Text>
             </TouchableOpacity>
           </View>
           <View style={{flex: 1, alignItems: 'flex-start'}}>
-            <TouchableOpacity disabled={true} style={{opacity: 0.3, borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', margin: 10, width: 100, height: 40}}>
+            <TouchableOpacity style={{borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', margin: 10, width: 100, height: 40}}>
               <Text style={{color: 'white'}}>
                 Incorrect
               </Text>
@@ -47,10 +47,10 @@ class Card extends Component{
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity
             style={{borderRadius: 8, alignItems: 'center', backgroundColor: '#3478f6', padding: 10, width: 100, height: 40}}
-            onPress={this.showAnswer}
+            onPress={this.showCard}
           >
             <Text style={{color: 'white'}}>
-              See answer
+              See Card
             </Text>
           </TouchableOpacity>
         </View>
@@ -59,5 +59,4 @@ class Card extends Component{
   }
 }
 
-
-export default Card
+export default AnswerView
