@@ -10,7 +10,7 @@ class AllDecks extends Component{
         <View style={styles.boxText}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Deck')}
-          >
+          A>
             <Text style={styles.textDeck}>{item.deck}</Text>
           </TouchableOpacity>
           <Text style={styles.textCards}>n cards</Text>

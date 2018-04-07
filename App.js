@@ -7,6 +7,10 @@ import AddCard from './components/AddCard'
 import Card from './components/Card'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './redux/reducers'
+import { connect } from 'react-redux'
 
 function AppStatusBar(){
   return (
@@ -60,14 +64,19 @@ const RootStack = StackNavigator({
   initialRouteName: 'Home',
 })
 
-export default class App extends Component {
+class App extends Component {
   render() {
+    console.log(this.props)
     console.disableYellowBox = true
     return (
-      <View style={{flex: 1}}>
-        <AppStatusBar barStyle='light-content' />
-        <RootStack />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={{flex: 1}}>
+          <AppStatusBar barStyle='light-content' />
+          <RootStack />
+        </View>
+      </Provider>
     )
   }
 }
+
+export default App

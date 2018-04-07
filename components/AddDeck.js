@@ -1,10 +1,28 @@
 import React, { Component } from 'react'
 import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { guid } from '../utils/helpers'
+import { connect } from 'react-redux'
+import { addDeck } from '../redux/actions'
 
 class AddDeck extends Component{
 
   state = {
     deckTitle: ''
+  }
+
+  createDeck = () => {
+    const id = 'id' + guid()
+    let deck = {
+      [id]: {
+        title: this.state.deckTitle,
+        cards: []
+      }
+    }
+    this.props.dispatch(addDeck(deck))
+    console.log(this.props);
+    this.props.navigation.navigate('Deck', {
+      title: deck[id].title
+    })
   }
 
   render(){
@@ -24,7 +42,7 @@ class AddDeck extends Component{
         <View style={styles.boxSubmitBtn}>
           <TouchableOpacity
             style={styles.submitBtn}
-            onPress={() => this.props.navigation.navigate('Deck')}
+            onPress={this.createDeck}
           >
             <Text style={{color: 'white'}}>
               Submit
@@ -69,4 +87,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddDeck
+export default connect()(AddDeck)
