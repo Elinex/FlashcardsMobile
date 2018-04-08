@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 
 class AllDecks extends Component{
 
   render(){
+    console.log(this.props);
 
     const text = (item) => {
       return (
         <View style={styles.boxText}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Deck')}
-          A>
+          >
             <Text style={styles.textDeck}>{item.deck}</Text>
           </TouchableOpacity>
           <Text style={styles.textCards}>n cards</Text>
@@ -77,5 +79,10 @@ const styles = StyleSheet.create({
   }
 })
 
+function mapStateToProps(state){
+  return {
+    decks: state.decks
+  }
+}
 
-export default AllDecks
+export default connect(mapStateToProps)(AllDecks)

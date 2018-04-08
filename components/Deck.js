@@ -7,11 +7,11 @@ class Deck extends Component{
   }
 
   render(){
-    const { title } = this.props.navigation.state.params
+
     return (
       <View style={styles.container}>
         <View style={styles.container}>
-          <Text style={styles.text}>{title}</Text>
+          <Text style={styles.text}>Deck title</Text>
           <Text style={styles.cardsNumber}>n cards</Text>
         </View>
         <View style={styles.boxBtn}>

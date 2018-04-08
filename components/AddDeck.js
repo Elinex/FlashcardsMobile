@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
-import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  AsyncStorage
+} from 'react-native'
 import { guid } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { addDeck } from '../redux/actions'
+// import { decks } from '../utils/api'
 
 class AddDeck extends Component{
 
@@ -14,15 +22,21 @@ class AddDeck extends Component{
     const id = 'id' + guid()
     let deck = {
       [id]: {
-        title: this.state.deckTitle,
-        cards: []
+        title: this.state.deckTitle
       }
     }
+
     this.props.dispatch(addDeck(deck))
-    console.log(this.props);
-    this.props.navigation.navigate('Deck', {
-      title: deck[id].title
+
+    AsyncStorage.setItem('decks', {}, () => {
+      AsyncStorage.mergeItem('decks', JSON.stringify(deck), () => {
+        AsyncStorage.getItem('decks', (err, result) => {
+          console.log(err, result)
+        })
+      })
     })
+
+    this.props.navigation.navigate('Deck')
   }
 
   render(){
