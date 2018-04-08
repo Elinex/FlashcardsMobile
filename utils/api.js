@@ -1,7 +1,9 @@
 import { AsyncStorage } from 'react-native'
 
-export const decks = {}
+const STORAGE_KEY = 'STORAGE_KEY'
 
-// function setDecks(){
-//   AsyncStorage.setItem(decks, {})
-// }
+export function addDeckAPI(id, deck){
+  return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
+    [id]: deck
+  }))
+}

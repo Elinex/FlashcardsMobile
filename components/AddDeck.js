@@ -4,13 +4,12 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
-  StyleSheet,
-  AsyncStorage
+  StyleSheet
 } from 'react-native'
 import { guid } from '../utils/helpers'
-// import { decks } from '../utils/api'
 import { connect } from 'react-redux'
 import { addDeck } from '../redux/actions'
+import { addDeckAPI } from '../utils/api'
 
 class AddDeck extends Component{
 
@@ -21,16 +20,12 @@ class AddDeck extends Component{
   createDeck = () => {
     const id = 'id' + guid()
     let deck = {
-      [id]: {
-        title: this.state.deckTitle
-      }
+      title: this.state.deckTitle,
+      cards: []
     }
-
-    this.props.dispatch(addDeck(deck))
-
-    // AsyncStorage.mergeItem(decks, JSON.stringify(deck))
-
-    this.props.navigation.navigate('Deck', {id: id})
+    addDeckAPI(id, deck)
+    this.props.dispatch(addDeck(id, deck))
+    this.props.navigation.navigate('Deck', { id })
   }
 
   render(){

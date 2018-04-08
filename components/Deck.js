@@ -8,13 +8,14 @@ class Deck extends Component{
   }
 
   render(){
-    const { id } = this.props
-    const { title } = this.props.decks[id]
+    console.log(this.props);
+    // const { id } = this.props
+    // const { title } = this.props.decks[id]
 
     return (
       <View style={styles.container}>
         <View style={styles.container}>
-          <Text style={styles.text}>{title}</Text>
+          <Text style={styles.text}>Deck title</Text>
           <Text style={styles.cardsNumber}>n cards</Text>
         </View>
         <View style={styles.boxBtn}>
@@ -72,9 +73,7 @@ function mapStateToProps(decks, { navigation }){
   const { id } = navigation.state.params
   return {
     id,
-    decks: decks.filter(deck => Object.keys(deck)[0] === id).reduce((element) => {
-      return element
-    })
+    decks
   }
 }
 
