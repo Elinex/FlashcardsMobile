@@ -66,7 +66,6 @@ const RootStack = StackNavigator({
 
 class App extends Component {
   render() {
-    console.log(this.props)
     console.disableYellowBox = true
     return (
       <Provider store={createStore(reducer)}>

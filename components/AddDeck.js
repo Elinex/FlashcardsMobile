@@ -8,9 +8,9 @@ import {
   AsyncStorage
 } from 'react-native'
 import { guid } from '../utils/helpers'
+// import { decks } from '../utils/api'
 import { connect } from 'react-redux'
 import { addDeck } from '../redux/actions'
-// import { decks } from '../utils/api'
 
 class AddDeck extends Component{
 
@@ -28,15 +28,9 @@ class AddDeck extends Component{
 
     this.props.dispatch(addDeck(deck))
 
-    AsyncStorage.setItem('decks', {}, () => {
-      AsyncStorage.mergeItem('decks', JSON.stringify(deck), () => {
-        AsyncStorage.getItem('decks', (err, result) => {
-          console.log(err, result)
-        })
-      })
-    })
+    // AsyncStorage.mergeItem(decks, JSON.stringify(deck))
 
-    this.props.navigation.navigate('Deck')
+    this.props.navigation.navigate('Deck', {id: id})
   }
 
   render(){

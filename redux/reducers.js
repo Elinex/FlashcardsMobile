@@ -1,12 +1,9 @@
 import { ADD_DECK } from './actions'
 
-function decks(state = {}, action){
+function decks(state = [], action){
   switch (action.type){
     case ADD_DECK:
-      return {
-        ...state,
-        ...action.deck
-      }
+      return state.concat(action.deck)
     default:
       return state
   }

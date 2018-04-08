@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 
 class Deck extends Component{
   static navigationOptions = {
@@ -7,11 +8,13 @@ class Deck extends Component{
   }
 
   render(){
+    const { id } = this.props
+    const { title } = this.props.decks[id]
 
     return (
       <View style={styles.container}>
         <View style={styles.container}>
-          <Text style={styles.text}>Deck title</Text>
+          <Text style={styles.text}>{title}</Text>
           <Text style={styles.cardsNumber}>n cards</Text>
         </View>
         <View style={styles.boxBtn}>
@@ -65,4 +68,14 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Deck
+function mapStateToProps(decks, { navigation }){
+  const { id } = navigation.state.params
+  return {
+    id,
+    decks: decks.filter(deck => Object.keys(deck)[0] === id).reduce((element) => {
+      return element
+    })
+  }
+}
+
+export default connect(mapStateToProps)(Deck)
