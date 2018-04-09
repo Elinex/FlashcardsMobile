@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
+import { STORAGE_KEY } from '../utils/api'
 
 class Deck extends Component{
   static navigationOptions = {
@@ -8,15 +9,14 @@ class Deck extends Component{
   }
 
   render(){
-    console.log(this.props);
-    // const { id } = this.props
-    // const { title } = this.props.decks[id]
+
+    const { id, deck } = this.props
 
     return (
       <View style={styles.container}>
         <View style={styles.container}>
-          <Text style={styles.text}>Deck title</Text>
-          <Text style={styles.cardsNumber}>n cards</Text>
+          <Text style={styles.text}>{deck.title}</Text>
+          <Text style={styles.cardsNumber}>{deck.cards.length} cards</Text>
         </View>
         <View style={styles.boxBtn}>
           <TouchableOpacity
@@ -27,7 +27,7 @@ class Deck extends Component{
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.navigation.navigate('AddCard')}
+            onPress={() => this.props.navigation.navigate('AddCard', { id })}
           >
             <Text style={{color: 'white'}}>Add Cards</Text>
           </TouchableOpacity>
@@ -73,7 +73,7 @@ function mapStateToProps(decks, { navigation }){
   const { id } = navigation.state.params
   return {
     id,
-    decks
+    deck: decks[id]
   }
 }
 
