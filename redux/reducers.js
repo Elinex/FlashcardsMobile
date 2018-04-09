@@ -1,6 +1,6 @@
 import { ADD_DECK } from './actions'
 
-function decks(state = {}, action){
+const decks = (state = {}, action) => {
   const { id, deck, type } = action
   switch (type){
     case ADD_DECK:

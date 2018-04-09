@@ -9,8 +9,9 @@ class Deck extends Component{
   }
 
   render(){
+    console.log('Deck: ', this.props);
 
-    const { id, deck } = this.props
+    const { id, deck } = this.props.navigation.state.params
 
     return (
       <View style={styles.container}>
@@ -27,7 +28,7 @@ class Deck extends Component{
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.navigation.navigate('AddCard', { id })}
+            onPress={() => this.props.navigation.navigate('AddCard', { id, deck })}
           >
             <Text style={{color: 'white'}}>Add Cards</Text>
           </TouchableOpacity>
@@ -69,12 +70,12 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(decks, { navigation }){
-  const { id } = navigation.state.params
-  return {
-    id,
-    deck: decks[id]
-  }
-}
+// function mapStateToProps(decks, { navigation }){
+//   const { id } = navigation.state.params
+//   return {
+//     id,
+//     deck: decks[id]
+//   }
+// }
 
-export default connect(mapStateToProps)(Deck)
+export default connect()(Deck)

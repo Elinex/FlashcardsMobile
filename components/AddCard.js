@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, TextInput, StyleSheet } from 'react-native'
+import { addDeckAPI } from '../utils/api'
+import { addDeck } from '../redux/actions'
+import { connect } from 'react-redux'
 
 class AddCard extends Component{
   static navigationOptions = {
@@ -11,7 +14,22 @@ class AddCard extends Component{
     answer: ''
   }
 
+  createCard = () => {
+    const { id, deck } =  this.props.navigation.state.params
+    const { question, answer } = this.state
+    const card = {
+      question,
+      answer
+    }
+    deck.cards = deck.cards.concat(card)
+    addDeckAPI(id, deck)
+    this.props.dispatch(addDeck(id, deck))
+    this.props.navigation.navigate('Deck', { id, deck })
+  }
+
   render(){
+    console.log('AddCard: ', this.props);
+
     return (
       <View style={styles.container}>
         <View style={{flex: 1, justifyContent: 'flex-end'}}>
@@ -39,7 +57,7 @@ class AddCard extends Component{
         <View style={styles.boxSubmitBtn}>
           <TouchableOpacity
             style={styles.submitBtn}
-            onPress={() => this.props.navigation.navigate('Deck')}
+            onPress={this.createCard}
           >
             <Text style={{color: 'white'}}>
               Submit
@@ -79,4 +97,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddCard
+export default connect()(AddCard)

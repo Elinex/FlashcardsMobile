@@ -25,10 +25,11 @@ class AddDeck extends Component{
     }
     addDeckAPI(id, deck)
     this.props.dispatch(addDeck(id, deck))
-    this.props.navigation.navigate('Deck', { id })
+    this.props.navigation.navigate('Deck', { id, deck })
   }
 
   render(){
+
     return (
       <View style={styles.container}>
         <View style={styles.boxTextInput}>

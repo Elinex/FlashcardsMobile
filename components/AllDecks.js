@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native'
+import { STORAGE_KEY } from '../utils/api'
+import { connect } from 'react-redux'
 
 class AllDecks extends Component{
+
+  componentDidMount(){
+    AsyncStorage.getItem(STORAGE_KEY, (err, res) => {
+      console.log(res)
+    })
+  }
 
   render(){
 
@@ -77,4 +85,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AllDecks
+function mapStateToProps(state){
+  return {
+    ...state,
+  }
+}
+
+export default connect(mapStateToProps)(AllDecks)
