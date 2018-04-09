@@ -1,30 +1,18 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import AnswerView from './AnswerView'
+// import AnswerView from './AnswerView'
 
 class Card extends Component{
   static navigationOptions = {
-    title: 'Card',
-  }
-
-  state = {
-    seeAnswer: false
-  }
-
-  showAnswer = () => {
-    this.setState({
-      seeAnswer: true
-    })
+    title: 'Card question',
   }
 
   render(){
 
-    if (this.state.seeAnswer === true){
-      return <AnswerView />
-    }
+    const { id, deck } = this.props.navigation.state.params
 
     return (
-      // Put here the header with the quiz name
+
       <View style={{flex: 1}}>
         <View style={styles.boxCardsNumber}>
           <Text style={styles.cardsNumber}>card 1 of n</Text>
@@ -57,7 +45,8 @@ class Card extends Component{
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity
             style={styles.answerBtn}
-            onPress={this.showAnswer}
+            // onPress={this.showAnswer}
+            onPress={() => this.props.navigation.navigate('AnswerView', { id, deck })}
           >
             <Text style={{color: 'white'}}>
               See answer

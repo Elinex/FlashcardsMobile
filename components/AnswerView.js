@@ -4,27 +4,12 @@ import Card from './Card'
 
 class AnswerView extends Component{
   static navigationOptions = {
-    title: 'See answer',
-  }
-
-  state = {
-    seeCard: false
-  }
-
-  showCard = () => {
-    this.setState({
-      seeCard: true
-    })
+    title: 'Card answer',
   }
 
   render(){
 
-    if (this.state.seeCard === true){
-      return <Card />
-    }
-
     return (
-      // Put here the header with the quiz name
       <View style={{flex: 1}}>
         <View style={styles.boxCardsNumber}>
           <Text style={styles.cardsNumber}>card 1 of n</Text>
@@ -51,10 +36,10 @@ class AnswerView extends Component{
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity
             style={styles.cardBtn}
-            onPress={this.showCard}
+            // onPress={this.showCard}
           >
             <Text style={{color: 'white'}}>
-              See Card
+              Next Card
             </Text>
           </TouchableOpacity>
         </View>

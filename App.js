@@ -5,6 +5,7 @@ import AllDecks from './components/AllDecks'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import Card from './components/Card'
+import AnswerView from './components/AnswerView'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { createStore } from 'redux'
@@ -58,6 +59,9 @@ const RootStack = StackNavigator({
   },
   Card: {
     screen: Card
+  },
+  AnswerView: {
+    screen: AnswerView
   }
 },
 {
