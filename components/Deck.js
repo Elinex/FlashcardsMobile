@@ -69,12 +69,4 @@ const styles = StyleSheet.create({
   }
 })
 
-// function mapStateToProps(decks, { navigation }){
-//   const { id } = navigation.state.params
-//   return {
-//     id,
-//     deck: decks[id]
-//   }
-// }
-
 export default connect()(Deck)
