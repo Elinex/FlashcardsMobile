@@ -2,61 +2,46 @@ import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native'
 import { STORAGE_KEY } from '../utils/api'
 import { connect } from 'react-redux'
+import { getDecks } from '../redux/actions'
 
 class AllDecks extends Component{
 
   componentDidMount(){
     AsyncStorage.getItem(STORAGE_KEY, (err, res) => {
-      console.log(res)
+      this.props.dispatch(getDecks(JSON.parse(res)))
     })
   }
 
   render(){
+    console.log('ALLDECKS: ', this.props);
+
+    const { decks } = this.props
 
     const text = (item) => {
       return (
-        <View style={styles.boxText}>
-          <TouchableOpacity
-            // onPress={() => this.props.navigation.navigate('Deck')}
-          >
-            <Text style={styles.textDeck}>{item.deck}</Text>
-          </TouchableOpacity>
-          <Text style={styles.textCards}>n cards</Text>
+        <View>
+          <Text>{item}</Text>
         </View>
+        
+        // <View style={styles.boxText}>
+        //   <TouchableOpacity
+        //     // onPress={() => this.props.navigation.navigate('Deck')}
+        //   >
+        //     <Text style={styles.textDeck}>{item.deck}</Text>
+        //   </TouchableOpacity>
+        //   <Text style={styles.textCards}>n cards</Text>
+        // </View>
       )
     }
 
     return (
       <View style={styles.container}>
-        <FlatList
-          data={[
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'},
-            {deck: 'Deck1'}
-          ]}
-          renderItem={({item}) => text(item)}
-        />
+        {(decks !== undefined) && (
+          <FlatList
+            data={Object.keys(decks)}
+            renderItem={({item}) => text(item)}
+          />
+        )}
       </View>
     )
   }
@@ -87,7 +72,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state){
   return {
-    ...state,
+    decks: state.decks
   }
 }
 
