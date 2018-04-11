@@ -47,7 +47,7 @@ class AddCard extends Component{
             placeholder='Insert question'
             placeholderTextColor={colors.darkBlue}
             autoCapitalize='sentences'
-            underlineColorAndroid={colors.darkBlue}
+            underlineColorAndroid={colors.orange}
           />
         </View>
         <View style={{flex: 1, justifyContent: 'flex-start'}}>
@@ -58,7 +58,7 @@ class AddCard extends Component{
             placeholder='Insert answer'
             placeholderTextColor={colors.darkBlue}
             autoCapitalize='sentences'
-            underlineColorAndroid={colors.darkBlue}
+            underlineColorAndroid={colors.orange}
           />
         </View>
         <View style={styles.boxSubmitBtn}>

@@ -46,7 +46,7 @@ class AddDeck extends Component{
             placeholder='Insert the deck title'
             placeholderTextColor={colors.darkBlue}
             autoCapitalize='sentences'
-            underlineColorAndroid={colors.darkBlue}
+            underlineColorAndroid={colors.orange}
             maxLength={20}
           />
         </View>
