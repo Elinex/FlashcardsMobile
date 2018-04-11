@@ -32,7 +32,7 @@ class AllDecks extends Component{
 
     return (
       <View style={styles.container}>
-        {(decks !== undefined) && (
+        {(decks && (decks.length > 0)) && (
           <FlatList
             data={Object.keys(decks).map(deck => {
               return [deck, decks[deck]]
