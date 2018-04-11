@@ -21,10 +21,16 @@ class AddCard extends Component{
       question,
       answer
     }
-    deck.cards = deck.cards.concat(card)
-    addDeckAPI(id, deck)
-    this.props.dispatch(addDeck(id, deck))
-    this.props.navigation.navigate('Deck', { id, deck })
+
+    if ((question === '') || (answer === '')) {
+      alert('Fill all the fields')
+    } else {
+      deck.cards = deck.cards.concat(card)
+      addDeckAPI(id, deck)
+      this.props.dispatch(addDeck(id, deck))
+      this.props.navigation.navigate('Deck', { id, deck })
+    }
+
   }
 
   render(){
