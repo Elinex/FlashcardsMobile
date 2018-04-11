@@ -11,6 +11,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './redux/reducers'
 import { connect } from 'react-redux'
+import { setLocalNotification } from './utils/helpers'
 
 function AppStatusBar(){
   return (
@@ -65,6 +66,11 @@ const RootStack = StackNavigator({
 })
 
 class App extends Component {
+
+  componentDidMount(){
+    setLocalNotification()
+  }
+  
   render() {
     console.disableYellowBox = true
     return (

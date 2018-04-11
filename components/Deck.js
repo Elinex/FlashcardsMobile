@@ -2,26 +2,33 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { STORAGE_KEY } from '../utils/api'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Deck extends Component{
   static navigationOptions = {
     title: 'Deck',
   }
 
-  showBtn = () => {
+  actions = () => {
     const { id, deck } = this.props.navigation.state.params
+    this.props.navigation.navigate('Card', { id, deck })
+    clearLocalNotification()
+      .then(setLocalNotification)
+  }
+
+  showBtn = () => {
+    const { deck } = this.props.navigation.state.params
     if (deck.cards.length > 0){
       return (
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.props.navigation.navigate('Card', { id, deck })}
+          onPress={this.actions}
         >
           <Text style={{color: 'white'}}>Start Quiz</Text>
         </TouchableOpacity>
       )
     }
   }
-
 
   render(){
 
