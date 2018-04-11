@@ -8,6 +8,21 @@ class Deck extends Component{
     title: 'Deck',
   }
 
+  showBtn = () => {
+    const { id, deck } = this.props.navigation.state.params
+    if (deck.cards.length > 0){
+      return (
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate('Card', { id, deck })}
+        >
+          <Text style={{color: 'white'}}>Start Quiz</Text>
+        </TouchableOpacity>
+      )
+    }
+  }
+
+
   render(){
 
     const { id, deck } = this.props.navigation.state.params
@@ -19,12 +34,7 @@ class Deck extends Component{
           <Text style={styles.cardsNumber}>{deck.cards.length} cards</Text>
         </View>
         <View style={styles.boxBtn}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate('Card', { id, deck })}
-          >
-            <Text style={{color: 'white'}}>Start Quiz</Text>
-          </TouchableOpacity>
+          {this.showBtn()}
           <TouchableOpacity
             style={styles.button}
             onPress={() => this.props.navigation.navigate('AddCard', { id, deck })}
