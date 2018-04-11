@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { colors } from '../utils/helpers'
 
 class Card extends Component{
   static navigationOptions = {
-    title: 'Card',
+    title: 'CARD'
   }
 
   state = {
@@ -44,9 +45,9 @@ class Card extends Component{
 
     if (card === undefined) {
       return (
-        <View>
-          <Text>Final score is</Text>
-          <Text>{(score*100).toFixed()}%</Text>
+        <View style={[styles.box2, {flex: 1}]}>
+          <Text style={{color: colors.darkBlue, fontSize: 30}}>Final score</Text>
+          <Text style={{color: colors.darkBlue, fontSize: 50}}>{(score*100).toFixed()}%</Text>
         </View>
       )
     }
@@ -54,89 +55,67 @@ class Card extends Component{
     return (
 
       <View style={{flex: 1}}>
-        <View style={styles.boxCardsNumber}>
-          <Text style={styles.cardsNumber}>{`Card ${index} of ${cardsNumber}`}</Text>
+        <View style={styles.box1}>
+          <View style={{justifyContent: 'flex-start'}}>
+            <Text style={styles.cardsNumber}>
+              {`${index}/${cardsNumber}`}
+            </Text>
+          </View>
+          {seeAnswer && (
+            <View style={{justifyContent: 'flex-end', marginRight: 10}}>
+              <TouchableOpacity
+                onPress={this.nextCard}>
+                  <Text style={styles.cardsNumber}>Next ></Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
-        {!seeAnswer && (
-          <View style={{flex: 5}}>
-            <View style={styles.boxQuestion}>
-              <Text style={styles.question}>{card.question}</Text>
+        <View style={styles.box2}>
+          <Text style={styles.question}>
+            {card.question}
+          </Text>
+          {!seeAnswer && (
+            <TouchableOpacity style={{alignItems: 'center',padding: 10}} onPress={this.showAnswer}>
+              <Text style={styles.btnAnswer}>See answer</Text>
+            </TouchableOpacity>
+          )}
+          {seeAnswer && (
+            <View style={{justifyContent: 'flex-start',alignItems: 'center'}}>
+              <Text style={styles.answer}>
+                {card.answer}
+              </Text>
             </View>
-            <View style={{flex: 1, flexDirection: 'row'}}>
-              <View style={{flex: 1, alignItems: 'flex-end'}}>
-                <TouchableOpacity
-                  disabled={true}
-                  style={[styles.disabledBtn, {backgroundColor: 'green'}]}
-                >
-                  <Text style={{color: 'white'}}>
-                    Correct
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={{flex: 1, alignItems: 'flex-start'}}>
-                <TouchableOpacity
-                  disabled={true}
-                  style={[styles.disabledBtn, {backgroundColor: 'red'}]}
-                >
-                  <Text style={{color: 'white'}}>
-                    Incorrect
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={{flex: 1, alignItems: 'center'}}>
-              <TouchableOpacity
-                style={styles.answerBtn}
-                onPress={this.showAnswer}
-              >
-                <Text style={{color: 'white'}}>
-                  See answer
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
+          )}
+        </View>
 
-        {seeAnswer && (
-          <View style={{flex: 5}}>
-            <View style={styles.boxQuestion}>
-              <Text style={styles.question}>{card.question}</Text>
-              <Text style={styles.question}>{card.answer}</Text>
-            </View>
-            <View style={{flex: 1, flexDirection: 'row'}}>
-              <View style={{flex: 1, alignItems: 'flex-end'}}>
-                <TouchableOpacity
-                  style={[styles.button, { backgroundColor: 'green'}]}
-                  onPress={this.upScore}
-                >
-                  <Text style={{color: 'white'}}>
-                    Correct
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={{flex: 1, alignItems: 'flex-start'}}>
-                <TouchableOpacity
-                  style={[styles.button, { backgroundColor: 'red'}]}
-                  // onPress={this.downScore}
-                >
-                  <Text style={{color: 'white'}}>
-                    Incorrect
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={{flex: 1, alignItems: 'center'}}>
+          {!seeAnswer && (
+            <View style={styles.box3}>
               <TouchableOpacity
-                style={styles.cardBtn}
-                onPress={this.nextCard}
-              >
-                <Text style={{color: 'white'}}>
-                  Next Card
-                </Text>
+                disabled={true}
+              style={[styles.correctBtn, {opacity: 0.3}]}>
+                <Text style={styles.correctText}>Correct</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                disabled={true}
+                style={[styles.correctBtn, {opacity: 0.3, backgroundColor: colors.red}]}>
+                <Text style={[styles.correctText, {color: colors.white}]}>Incorrect</Text>
               </TouchableOpacity>
             </View>
-          </View>
-        )}
+          )}
+
+          {seeAnswer && (
+            <View style={styles.box3}>
+              <TouchableOpacity
+                style={styles.correctBtn}
+                onPress={this.upScore}>
+                <Text style={styles.correctText}>Correct</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.correctBtn, {backgroundColor: colors.red}]}>
+                <Text style={styles.correctText}>Incorrect</Text>
+              </TouchableOpacity>
+            </View>
+          )}
 
       </View>
     )
@@ -144,60 +123,55 @@ class Card extends Component{
 }
 
 const styles = StyleSheet.create({
-  boxCardsNumber: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+  box1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   cardsNumber: {
-    color: 'gray',
+    color: colors.orange,
     fontSize: 22,
     margin: 10
   },
-  boxQuestion: {
-    flex: 2,
-    justifyContent: 'flex-start',
+  box2: {
+    justifyContent: 'center',
     alignItems: 'center'
   },
   question: {
-    color: 'orange',
-    fontSize: 36,
+    color: colors.gray,
+    fontSize: 30,
     fontWeight: 'bold',
     margin: 10,
     textAlign: 'center'
   },
-  disabledBtn: {
-    opacity: 0.3,
-    borderRadius: 8,
+  btnAnswer: {
+    color: colors.orange,
+    fontSize: 18
+  },
+  answer: {
+    color: colors.gray,
+    fontSize: 18
+  },
+  box3: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    marginBottom: 20
+  },
+  correctBtn: {
+    borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
     width: 100,
-    height: 40
+    height: 40,
+    backgroundColor: 'green'
   },
-  answerBtn: {
-    borderRadius: 8,
-    alignItems: 'center',
-    backgroundColor: '#3478f6',
-    padding: 10,
-    width: 100,
-    height: 40
-  },
-  button: {
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
-    width: 100,
-    height: 40
-  },
-  cardBtn: {
-    borderRadius: 8,
-    alignItems: 'center',
-    backgroundColor: '#3478f6',
-    padding: 10,
-    width: 100,
-    height: 40
+  correctText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 })
 

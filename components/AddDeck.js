@@ -10,6 +10,7 @@ import { guid } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { addDeck } from '../redux/actions'
 import { addDeckAPI } from '../utils/api'
+import { colors } from '../utils/helpers'
 
 class AddDeck extends Component{
 
@@ -42,10 +43,11 @@ class AddDeck extends Component{
             style={styles.textInput}
             onChangeText={(deckTitle) => this.setState({deckTitle})}
             value={this.state.deckTitle}
-            placeholder='Insert here the title of a new deck'
-            placeholderTextColor='white'
+            placeholder='Insert the deck title'
+            placeholderTextColor={colors.darkBlue}
             autoCapitalize='sentences'
-            underlineColorAndroid='white'
+            underlineColorAndroid={colors.darkBlue}
+            maxLength={20}
           />
         </View>
         <View style={styles.boxSubmitBtn}>
@@ -53,8 +55,8 @@ class AddDeck extends Component{
             style={styles.submitBtn}
             onPress={this.createDeck}
           >
-            <Text style={{color: 'white'}}>
-              Submit
+            <Text style={{color: colors.white, fontSize: 16}}>
+              SUBMIT
             </Text>
           </TouchableOpacity>
         </View>
@@ -77,10 +79,10 @@ const styles = StyleSheet.create({
     height: 80,
     margin: 15,
     textAlign: 'center',
-    borderRadius: 8,
-    fontSize: 20,
-    backgroundColor: 'orange',
-    opacity: 0.3
+    borderRadius: 2,
+    fontSize: 22,
+    backgroundColor: colors.white,
+    borderColor: colors.darkBlue
   },
   boxSubmitBtn: {
     flex: 1,
@@ -88,9 +90,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   submitBtn: {
-    borderRadius: 8,
+    borderRadius: 6,
     alignItems: 'center',
-    backgroundColor: '#3478f6',
+    backgroundColor: colors.darkBlue,
     padding: 10,
     width: 100
   }

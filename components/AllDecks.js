@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity, AsyncStorage } from
 import { STORAGE_KEY } from '../utils/api'
 import { connect } from 'react-redux'
 import { getDecks } from '../redux/actions'
+import { colors } from '../utils/helpers'
 
 class AllDecks extends Component{
 
@@ -54,16 +55,16 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 20,
     borderBottomWidth: 0.5,
-    borderBottomColor: 'orange'
+    borderBottomColor: colors.darkBlue
   },
   textDeck: {
-    fontSize: 30,
-    color: 'orange',
+    fontSize: 28,
+    color: colors.gray,
     fontWeight: 'bold'
   },
   textCards: {
-    color: 'gray',
-    fontSize: 20
+    color: colors.orange,
+    fontSize: 18
   }
 })
 

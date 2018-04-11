@@ -1,6 +1,14 @@
 import { AsyncStorage } from 'react-native'
 import { Notifications, Permissions } from 'expo'
 
+export const colors = {
+  white: '#fff',
+  darkBlue: '#17175A',
+  orange: '#ffa500',
+  gray: '#808080',
+  red: '#ff0000'
+}
+
 export function guid(){
   function s4(){
     return Math.floor((1 + Math.random()) * 0x10000)

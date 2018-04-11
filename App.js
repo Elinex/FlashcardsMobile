@@ -25,13 +25,13 @@ const Tabs = TabNavigator({
   AllDecks: {
     screen: AllDecks,
     navigationOptions: {
-      tabBarLabel: 'Decks'
+      tabBarLabel: 'DECKS'
     }
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
-      tabBarLabel: 'Add Deck'
+      tabBarLabel: 'NEW DECK'
     }
   }
 },
@@ -41,8 +41,13 @@ const Tabs = TabNavigator({
   },
   tabBarOptions: {
     style: {
-      height: 56,
-      backgroundColor: '#3478f6',
+      height: 70,
+      backgroundColor: '#17175A',
+      justifyContent: 'center',
+    },
+    labelStyle: {
+      fontWeight: 'bold',
+      fontSize: 20
     }
   }
 })
@@ -63,6 +68,16 @@ const RootStack = StackNavigator({
 },
 {
   initialRouteName: 'Home',
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: '#17175A',
+      alignItems: 'center'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  },
 })
 
 class App extends Component {
@@ -70,7 +85,7 @@ class App extends Component {
   componentDidMount(){
     setLocalNotification()
   }
-  
+
   render() {
     console.disableYellowBox = true
     return (

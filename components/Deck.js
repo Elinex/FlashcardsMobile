@@ -3,10 +3,11 @@ import { View, TouchableOpacity, Text, StyleSheet, AsyncStorage } from 'react-na
 import { connect } from 'react-redux'
 import { STORAGE_KEY } from '../utils/api'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { colors } from '../utils/helpers'
 
 class Deck extends Component{
   static navigationOptions = {
-    title: 'Deck',
+    title: 'DECK' ,
   }
 
   actions = () => {
@@ -24,7 +25,7 @@ class Deck extends Component{
           style={styles.button}
           onPress={this.actions}
         >
-          <Text style={{color: 'white'}}>Start Quiz</Text>
+          <Text style={{color: colors.white, fontSize: 16}}>START QUIZ</Text>
         </TouchableOpacity>
       )
     }
@@ -46,7 +47,7 @@ class Deck extends Component{
             style={styles.button}
             onPress={() => this.props.navigation.navigate('AddCard', { id, deck })}
           >
-            <Text style={{color: 'white'}}>Add Cards</Text>
+            <Text style={{color: colors.white, fontSize: 16}}>ADD CARD</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -61,12 +62,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    color: 'orange',
+    color: colors.gray,
     fontSize: 30,
     fontWeight: 'bold'
   },
   cardsNumber: {
-    color: 'gray',
+    color: colors.orange,
     fontSize: 22,
     margin: 10
   },
@@ -76,12 +77,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   button: {
-    borderRadius: 8,
+    borderRadius: 6,
     alignItems: 'center',
-    backgroundColor: '#3478f6',
+    justifyContent: 'center',
+    backgroundColor: colors.darkBlue,
     padding: 10,
     margin: 10,
-    width: 100,
+    width: 120,
     height: 40
   }
 })

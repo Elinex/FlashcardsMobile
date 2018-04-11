@@ -3,10 +3,11 @@ import { View, TouchableOpacity, Text, TextInput, StyleSheet } from 'react-nativ
 import { addDeckAPI } from '../utils/api'
 import { addDeck } from '../redux/actions'
 import { connect } from 'react-redux'
+import { colors } from '../utils/helpers'
 
 class AddCard extends Component{
   static navigationOptions = {
-    title: 'Add Card',
+    title: 'ADD CARD',
   }
 
   state = {
@@ -44,9 +45,9 @@ class AddCard extends Component{
             onChangeText={(question) => this.setState({question})}
             value={this.state.question}
             placeholder='Insert question'
-            placeholderTextColor='white'
+            placeholderTextColor={colors.darkBlue}
             autoCapitalize='sentences'
-            underlineColorAndroid='white'
+            underlineColorAndroid={colors.darkBlue}
           />
         </View>
         <View style={{flex: 1, justifyContent: 'flex-start'}}>
@@ -55,9 +56,9 @@ class AddCard extends Component{
             onChangeText={(answer) => this.setState({answer})}
             value={this.state.answer}
             placeholder='Insert answer'
-            placeholderTextColor='white'
+            placeholderTextColor={colors.darkBlue}
             autoCapitalize='sentences'
-            underlineColorAndroid='white'
+            underlineColorAndroid={colors.darkBlue}
           />
         </View>
         <View style={styles.boxSubmitBtn}>
@@ -65,8 +66,8 @@ class AddCard extends Component{
             style={styles.submitBtn}
             onPress={this.createCard}
           >
-            <Text style={{color: 'white'}}>
-              Submit
+            <Text style={{color: colors.white, fontSize: 16}}>
+              SUBMIT
             </Text>
           </TouchableOpacity>
         </View>
@@ -85,19 +86,19 @@ const styles = StyleSheet.create({
     height: 80,
     margin: 15,
     textAlign: 'center',
-    borderRadius: 8,
-    fontSize: 20,
-    backgroundColor: 'orange',
-    opacity: 0.3
+    borderRadius: 2,
+    fontSize: 22,
+    backgroundColor: colors.white,
+    borderColor: colors.darkBlue
   },
   boxSubmitBtn: {
     flex: 1,
     alignItems: 'center'
   },
   submitBtn: {
-    borderRadius: 8,
+    borderRadius: 6,
     alignItems: 'center',
-    backgroundColor: '#3478f6',
+    backgroundColor: colors.darkBlue,
     padding: 10,
     width: 100
   }
