@@ -13,24 +13,19 @@ class AllDecks extends Component{
   }
 
   render(){
-    console.log('ALLDECKS: ', this.props);
 
     const { decks } = this.props
 
     const text = (item) => {
       return (
-        <View>
-          <Text>{item}</Text>
+        <View style={styles.boxText}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Deck', {id: item[0], deck: item[1]})}
+          >
+            <Text style={styles.textDeck}>{item[1].title}</Text>
+          </TouchableOpacity>
+          <Text style={styles.textCards}>{item[1].cards.length} cards</Text>
         </View>
-        
-        // <View style={styles.boxText}>
-        //   <TouchableOpacity
-        //     // onPress={() => this.props.navigation.navigate('Deck')}
-        //   >
-        //     <Text style={styles.textDeck}>{item.deck}</Text>
-        //   </TouchableOpacity>
-        //   <Text style={styles.textCards}>n cards</Text>
-        // </View>
       )
     }
 
@@ -38,7 +33,9 @@ class AllDecks extends Component{
       <View style={styles.container}>
         {(decks !== undefined) && (
           <FlatList
-            data={Object.keys(decks)}
+            data={Object.keys(decks).map(deck => {
+              return [deck, decks[deck]]
+            })}
             renderItem={({item}) => text(item)}
           />
         )}
