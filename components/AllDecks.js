@@ -1,21 +1,39 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native'
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  AsyncStorage,
+  Animated
+} from 'react-native'
 import { STORAGE_KEY } from '../utils/api'
 import { connect } from 'react-redux'
 import { getDecks } from '../redux/actions'
 import { colors } from '../utils/helpers'
 
 class AllDecks extends Component{
+  state = {
+    opacity: new Animated.Value(0)
+  }
 
   componentDidMount(){
+    const { opacity } = this.state
+    Animated.timing(opacity, {toValue: 1, duration: 2000}).start()
+
     AsyncStorage.getItem(STORAGE_KEY, (err, res) => {
       this.props.dispatch(getDecks(JSON.parse(res)))
     })
   }
 
+
+
   render(){
+    console.log(this.props);
 
     const { decks } = this.props
+    const { opacity } = this.state
 
     const text = (item) => {
       return (
@@ -32,7 +50,7 @@ class AllDecks extends Component{
 
     return (
       <View style={styles.container}>
-        {(decks && (decks.length > 0)) && (
+        {decks && (
           <FlatList
             data={Object.keys(decks).map(deck => {
               return [deck, decks[deck]]
@@ -40,12 +58,19 @@ class AllDecks extends Component{
             renderItem={({item}) => text(item)}
           />
         )}
-        {(decks == undefined) && (
-          <View>
-            <Text>FlashCards</Text>
+        {((decks === undefined) || (decks === null)) && (
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Animated.Text style={[{opacity}, styles.textIntro]}>
+              Flash
+            </Animated.Text>
+            <Animated.Text style={[{opacity}, styles.textIntro]}>
+              Cards
+            </Animated.Text>
+            <Animated.Text style={[{opacity}, styles.textCards]}>
+              Add a deck to start a quiz
+            </Animated.Text>
           </View>
         )}
-        
       </View>
     )
   }
@@ -71,6 +96,11 @@ const styles = StyleSheet.create({
   textCards: {
     color: colors.orange,
     fontSize: 18
+  },
+  textIntro: {
+    color: colors.darkBlue,
+    fontWeight: 'bold',
+    fontSize: 40
   }
 })
 

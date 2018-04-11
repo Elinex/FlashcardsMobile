@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { STORAGE_KEY } from '../utils/api'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { colors } from '../utils/helpers'
+import { Entypo } from '@expo/vector-icons'
 
 class Deck extends Component{
   static navigationOptions = {
