@@ -5,7 +5,7 @@ import { STORAGE_KEY } from '../utils/api'
 
 class Deck extends Component{
   static navigationOptions = {
-    title: 'Deck title',
+    title: 'Deck',
   }
 
   render(){

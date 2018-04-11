@@ -10,6 +10,7 @@ class Card extends Component{
     cardsNumber: this.props.navigation.state.params.deck.cards.length,
     index: 1,
     seeAnswer: false,
+    score: 0
   }
 
   showAnswer = () => {
@@ -26,17 +27,25 @@ class Card extends Component{
     })
   }
 
+  upScore = () => {
+    const { score, cardsNumber } = this.state
+    const pointForEachCard = 1/cardsNumber
+    this.setState({
+      score: score + pointForEachCard
+    })
+  }
+
   render(){
     console.log(this.props)
 
-    const { cardsNumber, index, seeAnswer } = this.state
+    const { cardsNumber, index, seeAnswer, score } = this.state
     const { id, deck } = this.props.navigation.state.params
     const card = deck.cards[(index - 1)]
 
     if (card === undefined) {
       return (
         <View>
-          <Text>Score</Text>
+          <Text>{score}</Text>
         </View>
       )
     }
@@ -95,14 +104,20 @@ class Card extends Component{
             </View>
             <View style={{flex: 1, flexDirection: 'row'}}>
               <View style={{flex: 1, alignItems: 'flex-end'}}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: 'green'}]}>
+                <TouchableOpacity
+                  style={[styles.button, { backgroundColor: 'green'}]}
+                  onPress={this.upScore}
+                >
                   <Text style={{color: 'white'}}>
                     Correct
                   </Text>
                 </TouchableOpacity>
               </View>
               <View style={{flex: 1, alignItems: 'flex-start'}}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: 'red'}]}>
+                <TouchableOpacity
+                  style={[styles.button, { backgroundColor: 'red'}]}
+                  // onPress={this.downScore}
+                >
                   <Text style={{color: 'white'}}>
                     Incorrect
                   </Text>

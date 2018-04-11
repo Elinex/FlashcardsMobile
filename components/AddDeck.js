@@ -25,7 +25,7 @@ class AddDeck extends Component{
       cards: []
     }
     if (deckTitle === '') {
-      alert('Title required')
+      alert('Insert title')
     } else {
       addDeckAPI(id, deck)
       this.props.dispatch(addDeck(id, deck))
