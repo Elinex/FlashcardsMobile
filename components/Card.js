@@ -31,7 +31,7 @@ class Card extends Component{
     const { score, cardsNumber } = this.state
     const pointForEachCard = 1/cardsNumber
     this.setState({
-      score: score + pointForEachCard
+      score: (score + pointForEachCard)
     })
   }
 
@@ -45,7 +45,8 @@ class Card extends Component{
     if (card === undefined) {
       return (
         <View>
-          <Text>{score}</Text>
+          <Text>Final score is</Text>
+          <Text>{(score*100).toFixed()}%</Text>
         </View>
       )
     }
