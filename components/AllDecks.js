@@ -40,6 +40,12 @@ class AllDecks extends Component{
             renderItem={({item}) => text(item)}
           />
         )}
+        {(decks == undefined) && (
+          <View>
+            <Text>FlashCards</Text>
+          </View>
+        )}
+        
       </View>
     )
   }
