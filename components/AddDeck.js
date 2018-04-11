@@ -18,14 +18,19 @@ class AddDeck extends Component{
   }
 
   createDeck = () => {
+    const { deckTitle } = this.state
     const id = 'id' + guid()
     let deck = {
-      title: this.state.deckTitle,
+      title: deckTitle,
       cards: []
     }
-    addDeckAPI(id, deck)
-    this.props.dispatch(addDeck(id, deck))
-    this.props.navigation.navigate('Deck', { id, deck })
+    if (deckTitle === '') {
+      alert('Title required')
+    } else {
+      addDeckAPI(id, deck)
+      this.props.dispatch(addDeck(id, deck))
+      this.props.navigation.navigate('Deck', { id, deck })
+    }
   }
 
   render(){
