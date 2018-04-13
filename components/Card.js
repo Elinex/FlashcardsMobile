@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { colors } from '../utils/helpers'
+import {
+  colors,
+  clearLocalNotification, 
+  setLocalNotification
+} from '../utils/helpers'
 
 class Card extends Component{
   static navigationOptions = {
@@ -44,6 +48,9 @@ class Card extends Component{
     const card = deck.cards[(index - 1)]
 
     if (card === undefined) {
+      clearLocalNotification()
+        .then(setLocalNotification)
+
       return (
         <View style={[styles.box2, {flex: 1}]}>
           <Text style={{color: colors.darkBlue, fontSize: 30}}>Final score</Text>

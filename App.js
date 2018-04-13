@@ -71,7 +71,6 @@ const RootStack = StackNavigator({
   navigationOptions: {
     headerStyle: {
       backgroundColor: '#17175A',
-      alignItems: 'center'
     },
     headerTintColor: '#fff',
     headerTitleStyle: {

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
-import { STORAGE_KEY } from '../utils/api'
-import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { colors } from '../utils/helpers'
 import { Entypo } from '@expo/vector-icons'
 
@@ -14,8 +12,6 @@ class Deck extends Component{
   actions = () => {
     const { id, deck } = this.props.navigation.state.params
     this.props.navigation.navigate('Card', { id, deck })
-    clearLocalNotification()
-      .then(setLocalNotification)
   }
 
   showBtn = () => {
@@ -32,7 +28,7 @@ class Deck extends Component{
     } else {
       return (
         <TouchableOpacity
-          style={[styles.button, {opacity: 0.3}]}
+          style={[styles.button, {opacity: 0.6}]}
           disabled={true}
         >
           <Text style={{color: colors.white, fontSize: 16}}>START QUIZ</Text>
