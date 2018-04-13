@@ -29,6 +29,15 @@ class Deck extends Component{
           <Text style={{color: colors.white, fontSize: 16}}>START QUIZ</Text>
         </TouchableOpacity>
       )
+    } else {
+      return (
+        <TouchableOpacity
+          style={[styles.button, {opacity: 0.3}]}
+          disabled={true}
+        >
+          <Text style={{color: colors.white, fontSize: 16}}>START QUIZ</Text>
+        </TouchableOpacity>
+      )
     }
   }
 
