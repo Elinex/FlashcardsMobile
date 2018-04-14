@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import {
   colors,
-  clearLocalNotification, 
+  clearLocalNotification,
   setLocalNotification
 } from '../utils/helpers'
 
@@ -24,6 +24,19 @@ class Card extends Component{
     })
   }
 
+  upScore = () => {
+    const { score, cardsNumber } = this.state
+    const pointForEachCard = 1/cardsNumber
+    this.setState({
+      score: (score + pointForEachCard)
+    })
+    this.nextCard()
+  }
+
+  downScore = () => {
+    this.nextCard()
+  }
+
   nextCard = () => {
     const { index, cardsNumber } = this.state
     this.setState({
@@ -32,16 +45,7 @@ class Card extends Component{
     })
   }
 
-  upScore = () => {
-    const { score, cardsNumber } = this.state
-    const pointForEachCard = 1/cardsNumber
-    this.setState({
-      score: (score + pointForEachCard)
-    })
-  }
-
   render(){
-    console.log(this.props)
 
     const { cardsNumber, index, seeAnswer, score } = this.state
     const { id, deck } = this.props.navigation.state.params
@@ -60,22 +64,11 @@ class Card extends Component{
     }
 
     return (
-
       <View style={{flex: 1}}>
         <View style={styles.box1}>
-          <View style={{justifyContent: 'flex-start'}}>
-            <Text style={styles.cardsNumber}>
-              {`${index}/${cardsNumber}`}
-            </Text>
-          </View>
-          {seeAnswer && (
-            <View style={{justifyContent: 'flex-end', marginRight: 10}}>
-              <TouchableOpacity
-                onPress={this.nextCard}>
-                  <Text style={styles.cardsNumber}>Next ></Text>
-              </TouchableOpacity>
-            </View>
-          )}
+          <Text style={styles.cardsNumber}>
+            {`${index}/${cardsNumber}`}
+          </Text>
         </View>
         <View style={styles.box2}>
           <Text style={styles.question}>
@@ -99,7 +92,7 @@ class Card extends Component{
             <View style={styles.box3}>
               <TouchableOpacity
                 disabled={true}
-              style={[styles.correctBtn, {opacity: 0.3}]}>
+                style={[styles.correctBtn, {opacity: 0.3}]}>
                 <Text style={styles.correctText}>Correct</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -118,7 +111,8 @@ class Card extends Component{
                 <Text style={styles.correctText}>Correct</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.correctBtn, {backgroundColor: colors.red}]}>
+                style={[styles.correctBtn, {backgroundColor: colors.red}]}
+                onPress={this.downScore}>
                 <Text style={styles.correctText}>Incorrect</Text>
               </TouchableOpacity>
             </View>
@@ -133,7 +127,7 @@ const styles = StyleSheet.create({
   box1: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-start'
   },
   cardsNumber: {
     color: colors.orange,

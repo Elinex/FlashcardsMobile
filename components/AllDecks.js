@@ -25,6 +25,8 @@ class AllDecks extends Component{
     AsyncStorage.getItem(STORAGE_KEY, (err, res) => {
       this.props.dispatch(getDecks(JSON.parse(res)))
     })
+
+    // AsyncStorage.removeItem(STORAGE_KEY)
   }
 
 
