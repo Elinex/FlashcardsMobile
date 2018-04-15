@@ -5,7 +5,6 @@ import {
   clearLocalNotification,
   setLocalNotification
 } from '../utils/helpers'
-import Score from './Score'
 
 class Card extends Component{
   static navigationOptions = {
@@ -46,6 +45,10 @@ class Card extends Component{
     })
   }
 
+  showScore = (id, deck, score) => {
+    this.props.navigation.navigate('Score', { id, deck, score })
+  }
+
   render(){
 
     const { cardsNumber, index, seeAnswer, score } = this.state
@@ -55,7 +58,7 @@ class Card extends Component{
     if (card === undefined) {
       clearLocalNotification()
         .then(setLocalNotification)
-      return <Score score={score}/>  
+      this.showScore(id, deck, score)
     }
 
     return (
@@ -67,7 +70,7 @@ class Card extends Component{
         </View>
         <View style={styles.box2}>
           <Text style={styles.question}>
-            {card.question}
+            {card && card.question}
           </Text>
           {!seeAnswer && (
             <TouchableOpacity style={{alignItems: 'center',padding: 10}} onPress={this.showAnswer}>

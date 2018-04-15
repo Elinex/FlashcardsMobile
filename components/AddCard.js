@@ -35,7 +35,6 @@ class AddCard extends Component{
   }
 
   render(){
-    console.log('AddCard: ', this.props);
 
     return (
       <View style={styles.container}>

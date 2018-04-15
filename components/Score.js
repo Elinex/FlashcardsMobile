@@ -4,8 +4,18 @@ import { colors } from '../utils/helpers'
 
 class Score extends Component{
 
+  restartQuiz = () => {
+    const { id, deck } = this.props.navigation.state.params
+    this.props.navigation.navigate('Card', { id, deck })
+
+  }
+
+  backToDeck = () => {
+    // Go to deck view
+  }
+
   render(){
-    const { score } = this.props
+    const { score } = this.props.navigation.state.params
 
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -18,16 +28,17 @@ class Score extends Component{
         </View>
         <View style={styles.boxBtn}>
           <TouchableOpacity
-            style={styles.button}>
+            style={styles.button}
+            onPress={this.restartQuiz}>
             <Text style={styles.textBtn}>RESTART QUIZ</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.button}>
+            style={styles.button}
+            onPress={this.backToDeck}>
             <Text style={styles.textBtn}>BACK TO DECK</Text>
           </TouchableOpacity>
         </View>
       </View>
-
     )
   }
 }
@@ -39,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   score: {
-    flexDirection: 'row', 
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },

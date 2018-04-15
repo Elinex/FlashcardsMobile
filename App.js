@@ -5,6 +5,7 @@ import AllDecks from './components/AllDecks'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import Card from './components/Card'
+import Score from './components/Score'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { createStore } from 'redux'
@@ -65,6 +66,9 @@ const RootStack = StackNavigator({
   Card: {
     screen: Card
   },
+  Score: {
+    screen: Score
+  }
 },
 {
   initialRouteName: 'Home',
