@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { colors } from '../utils/helpers'
+import { NavigationActions } from 'react-navigation'
 
 class Score extends Component{
 
   restartQuiz = () => {
     const { id, deck } = this.props.navigation.state.params
     this.props.navigation.navigate('Card', { id, deck })
-
   }
 
   backToDeck = () => {
-    // Go to deck view
+    const { id, deck } = this.props.navigation.state.params
+    this.props.navigation.navigate('Deck', { id, deck })
   }
 
   render(){

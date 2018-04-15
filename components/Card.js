@@ -45,10 +45,6 @@ class Card extends Component{
     })
   }
 
-  showScore = (id, deck, score) => {
-    this.props.navigation.navigate('Score', { id, deck, score })
-  }
-
   render(){
 
     const { cardsNumber, index, seeAnswer, score } = this.state
@@ -58,7 +54,7 @@ class Card extends Component{
     if (card === undefined) {
       clearLocalNotification()
         .then(setLocalNotification)
-      this.showScore(id, deck, score)
+      this.props.navigation.navigate('Score', { id, deck, score })
     }
 
     return (
@@ -80,7 +76,7 @@ class Card extends Component{
           {seeAnswer && (
             <View style={{justifyContent: 'flex-start',alignItems: 'center'}}>
               <Text style={styles.answer}>
-                {card.answer}
+                {card && card.answer}
               </Text>
             </View>
           )}
