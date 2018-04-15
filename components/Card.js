@@ -5,6 +5,7 @@ import {
   clearLocalNotification,
   setLocalNotification
 } from '../utils/helpers'
+import Score from './Score'
 
 class Card extends Component{
   static navigationOptions = {
@@ -54,13 +55,7 @@ class Card extends Component{
     if (card === undefined) {
       clearLocalNotification()
         .then(setLocalNotification)
-
-      return (
-        <View style={[styles.box2, {flex: 1}]}>
-          <Text style={{color: colors.darkBlue, fontSize: 30}}>Final score</Text>
-          <Text style={{color: colors.darkBlue, fontSize: 50}}>{(score*100).toFixed()}%</Text>
-        </View>
-      )
+      return <Score score={score}/>  
     }
 
     return (
@@ -92,13 +87,13 @@ class Card extends Component{
             <View style={styles.box3}>
               <TouchableOpacity
                 disabled={true}
-                style={[styles.correctBtn, {opacity: 0.3}]}>
-                <Text style={styles.correctText}>Correct</Text>
+                style={[styles.correctBtn, {opacity: 0.4}]}>
+                <Text style={styles.correctText}>CORRECT</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 disabled={true}
-                style={[styles.correctBtn, {opacity: 0.3, backgroundColor: colors.red}]}>
-                <Text style={[styles.correctText, {color: colors.white}]}>Incorrect</Text>
+                style={[styles.correctBtn, {opacity: 0.4, backgroundColor: colors.red}]}>
+                <Text style={[styles.correctText, {color: colors.white}]}>INCORRECT</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -108,12 +103,12 @@ class Card extends Component{
               <TouchableOpacity
                 style={styles.correctBtn}
                 onPress={this.upScore}>
-                <Text style={styles.correctText}>Correct</Text>
+                <Text style={styles.correctText}>CORRECT</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.correctBtn, {backgroundColor: colors.red}]}
                 onPress={this.downScore}>
-                <Text style={styles.correctText}>Incorrect</Text>
+                <Text style={styles.correctText}>INCORRECT</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -161,7 +156,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   correctBtn: {
-    borderRadius: 100,
+    borderRadius: 6,
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
@@ -171,8 +166,7 @@ const styles = StyleSheet.create({
   },
   correctText: {
     color: colors.white,
-    fontSize: 16,
-    fontWeight: 'bold'
+    fontSize: 16
   }
 })
 

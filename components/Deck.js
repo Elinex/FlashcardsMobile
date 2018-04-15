@@ -20,8 +20,7 @@ class Deck extends Component{
       return (
         <TouchableOpacity
           style={styles.button}
-          onPress={this.actions}
-        >
+          onPress={this.actions}>
           <Text style={{color: colors.white, fontSize: 16}}>START QUIZ</Text>
         </TouchableOpacity>
       )
@@ -29,8 +28,7 @@ class Deck extends Component{
       return (
         <TouchableOpacity
           style={[styles.button, {opacity: 0.6}]}
-          disabled={true}
-        >
+          disabled={true}>
           <Text style={{color: colors.white, fontSize: 16}}>START QUIZ</Text>
         </TouchableOpacity>
       )
@@ -51,8 +49,7 @@ class Deck extends Component{
           {this.showBtn()}
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.navigation.navigate('AddCard', { id, deck })}
-          >
+            onPress={() => this.props.navigation.navigate('AddCard', { id, deck })}>
             <Text style={{color: colors.white, fontSize: 16}}>ADD CARD</Text>
           </TouchableOpacity>
         </View>
