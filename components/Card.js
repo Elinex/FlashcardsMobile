@@ -45,6 +45,14 @@ class Card extends Component{
     })
   }
 
+  showScore = () => {
+    const { score } = this.state
+    const { id, deck } = this.props.navigation.state.params
+
+    clearLocalNotification().then(setLocalNotification)
+    this.props.navigation.navigate('Score', { id, deck, score })
+  }
+
   render(){
 
     const { cardsNumber, index, seeAnswer, score } = this.state
@@ -52,9 +60,7 @@ class Card extends Component{
     const card = deck.cards[(index - 1)]
 
     if (card === undefined) {
-      clearLocalNotification()
-        .then(setLocalNotification)
-      this.props.navigation.navigate('Score', { id, deck, score })
+      this.showScore()
     }
 
     return (

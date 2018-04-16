@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import { colors } from '../utils/helpers'
 import { NavigationActions } from 'react-navigation'
 
 class Score extends Component{
+  static navigationOptions = ({navigation}) => ({
+    headerLeft: (
+      <View style={styles.header}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Home')}>
+          <Text style={{color: 'white', fontSize: 20}}>HOME</Text>
+        </TouchableWithoutFeedback>
+      </View>
+    )
+  })
 
   restartQuiz = () => {
     const { id, deck } = this.props.navigation.state.params
@@ -45,6 +54,12 @@ class Score extends Component{
 }
 
 const styles = StyleSheet.create({
+  header: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 20
+  },
   boxText: {
     flex: 1,
     justifyContent: 'center',

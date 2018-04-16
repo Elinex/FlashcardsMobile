@@ -32,7 +32,7 @@ class AllDecks extends Component{
 
 
   render(){
-
+    
     const { decks } = this.props
     const { opacity } = this.state
 

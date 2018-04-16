@@ -47,7 +47,6 @@ const Tabs = TabNavigator({
       justifyContent: 'center',
     },
     labelStyle: {
-      fontWeight: 'bold',
       fontSize: 20
     }
   }
@@ -77,9 +76,6 @@ const RootStack = StackNavigator({
       backgroundColor: '#17175A',
     },
     headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
   },
 })
 
