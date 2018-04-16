@@ -28,11 +28,9 @@ class AllDecks extends Component{
 
     // AsyncStorage.removeItem(STORAGE_KEY)
   }
-
-
-
+  
   render(){
-    
+
     const { decks } = this.props
     const { opacity } = this.state
 
