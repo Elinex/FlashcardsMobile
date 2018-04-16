@@ -3,11 +3,12 @@ import { View, TouchableOpacity, Text, StyleSheet, AsyncStorage } from 'react-na
 import { connect } from 'react-redux'
 import { colors } from '../utils/helpers'
 import { Entypo } from '@expo/vector-icons'
+import HomeButton from './HomeButton'
 
 class Deck extends Component{
-  static navigationOptions = {
-    title: 'DECK' ,
-  }
+  static navigationOptions = ({ navigation }) => ({
+    headerLeft: <HomeButton navigation={navigation}/>
+  })
 
   actions = () => {
     const { id, deck } = this.props.navigation.state.params

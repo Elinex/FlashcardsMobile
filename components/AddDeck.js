@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { addDeck } from '../redux/actions'
 import { addDeckAPI } from '../utils/api'
 import { colors } from '../utils/helpers'
+import { NavigationActions } from 'react-navigation'
 
 class AddDeck extends Component{
 
@@ -30,7 +31,14 @@ class AddDeck extends Component{
     } else {
       addDeckAPI(id, deck)
       this.props.dispatch(addDeck(id, deck))
-      this.props.navigation.navigate('Deck', { id, deck })
+      // this.props.navigation.navigate('Deck', { id, deck })
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Deck',  params: { id, deck }})
+        ]
+      })
+      this.props.navigation.dispatch(resetAction)
     }
   }
 
